@@ -6,7 +6,7 @@
 /*   By: cacarval <cacarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 12:18:18 by cacarval          #+#    #+#             */
-/*   Updated: 2023/08/02 11:45:36 by cacarval         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:13:53 by cacarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate_a(t_stack **a, int i)
 	t_stack	*temp;
 	t_stack	*head;
 
-	if (a != NULL)
+	if (a != NULL && ft_lstsize_ps(*a) >= 2)
 	{
 		head = *a;
 		temp = *a;
@@ -37,7 +37,7 @@ void	rotate_b(t_stack **b, int i)
 	t_stack	*temp;
 	t_stack	*head;
 
-	if (b != NULL)
+	if (b != NULL && ft_lstsize_ps(*b) >= 2)
 	{
 		head = *b;
 		temp = *b;
@@ -56,7 +56,7 @@ void	rrotate_a(t_stack **a, int i)
 {
 	t_stack	*temp;
 
-	if (a != NULL)
+	if (a != NULL && ft_lstsize_ps(*a) >= 2)
 	{
 		temp = *a;
 		while (temp->next->next != NULL)
@@ -73,7 +73,7 @@ void	rrotate_b(t_stack **b, int i)
 {
 	t_stack	*temp;
 
-	if (b != NULL)
+	if (b != NULL && ft_lstsize_ps(*b) >= 2)
 	{
 		temp = *b;
 		while (temp->next->next != NULL)

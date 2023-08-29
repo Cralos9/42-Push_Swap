@@ -6,19 +6,11 @@
 /*   By: cacarval <cacarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 12:20:02 by cacarval          #+#    #+#             */
-/*   Updated: 2023/08/02 13:21:08 by cacarval         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:22:59 by cacarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ss(t_stack *a, t_stack *b, int i)
-{
-	swap_a(a, 1);
-	swap_b(b, 1);
-	if (i != 0)
-		ft_printf("ss\n");
-}
 
 int	max(t_stack *list)
 {
@@ -56,6 +48,20 @@ int	calc(int b, int a)
 		return (a);
 }
 
+int	mv_calcs2(t_info info_a, t_info info_b)
+{
+	int	nbr_m;
+
+	nbr_m = 0;
+	if (info_a.rotations >= info_a.size / 2)
+		nbr_m = info_a.size - info_a.rotations;
+	else if (info_b.rotations >= info_b.size / 2)
+		nbr_m = info_b.size - info_b.rotations;
+	else
+		nbr_m = calc(info_b.rotations, info_a.rotations);
+	return (nbr_m);
+}
+
 int	mv_calcs(t_info info_a, t_info info_b)
 {
 	int	nbr_m;
@@ -77,6 +83,6 @@ int	mv_calcs(t_info info_a, t_info info_b)
 			nbr_m = calc(info_b.rotations, info_a.rotations);
 	}
 	else
-		nbr_m = calc(info_b.rotations, info_a.rotations);
+		nbr_m = mv_calcs2(info_a, info_b);
 	return (++nbr_m);
 }

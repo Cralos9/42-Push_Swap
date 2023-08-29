@@ -6,7 +6,7 @@
 /*   By: cacarval <cacarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:34:12 by cacarval          #+#    #+#             */
-/*   Updated: 2023/06/13 12:32:28 by cacarval         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:48:49 by cacarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define  BUFFER_SIZE 1234
+#  define BUFFER_SIZE 1234
 # endif
 
 typedef struct s_list
@@ -92,6 +92,7 @@ char	*ft_read_and_join(int fd, char *temp);
 char	*ft_gnlstrjoin(char *temp, char *buffer);
 char	*ft_get_line(char *temp);
 char	*ft_new_temp(char *temp);
+char	*ft_getsubstr(char const *str, unsigned int start, size_t len);
 // char	*ft_gnlstrchr(char *s, int line_break);
 // size_t	 ft_gnlstrlen(char *s);
 #endif

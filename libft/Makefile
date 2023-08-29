@@ -6,7 +6,7 @@
 #    By: cacarval <cacarval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 12:45:11 by cacarval          #+#    #+#              #
-#    Updated: 2023/06/13 12:36:43 by cacarval         ###   ########.fr        #
+#    Updated: 2023/05/30 12:53:46 by cacarval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = ${FT_IS} ${FT_TO} ${FT_PUT} ${FT_MEM} ${FT_LST} ${FT_STR} ${FT_PRINTF} ${
 
 OBJS = 		$(SRCS:.c=.o)
 NAME = 		libft.a
+HEADER =	libft.h
 INCLUDE = 	-I include
 CC = 		cc
 RM = 		rm -f
@@ -42,7 +43,7 @@ CFLAGS = 	-Wextra -Wall -Werror
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+			@ar rcs $(NAME) $(OBJS) $(HEADER)
 
 all:		$(NAME)
 		

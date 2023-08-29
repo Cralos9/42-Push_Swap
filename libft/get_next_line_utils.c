@@ -6,105 +6,92 @@
 /*   By: cacarval <cacarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:09:06 by cacarval          #+#    #+#             */
-/*   Updated: 2023/07/11 14:54:48 by cacarval         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:48:09 by cacarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// char	*ft_strchr(char *temp, int line_break)
+char	*ft_getsubstr(char const *str, unsigned int start, size_t len)
+{
+	char	*new;
+	char	*original;
+
+	if (!str)
+		return (NULL);
+	if (len > (unsigned int)ft_strlen(str) - start)
+		len = (ft_strlen(str) - start);
+	if (start >= (unsigned int)ft_strlen(str))
+	{
+		new = (char *) malloc(sizeof(*new));
+		if (!new)
+			return (NULL);
+		*new = '\0';
+		return (new);
+	}
+	new = (char *) malloc(sizeof(*new) * (len + 1));
+	if (!new)
+		return (NULL);
+	original = new;
+	while (str[start] && len--)
+		*new++ = str[start++];
+	*new = '\0';
+	return (original);
+}
+
+// char	*ft_strdup(const char *str)
 // {
-// 	int	i;
+// 	char	*new;
+// 	size_t	i;
 
 // 	i = 0;
-// 	if (!temp)
-// 		return (0);
-// 	while (temp[i] != '\0')
+// 	new = (char *) malloc(sizeof(*new) * ft_strlen((char *)str) + 1);
+// 	if (!new)
+// 		return (NULL);
+// 	while (str[i] != '\0')
 // 	{
-// 		if (temp[i] == (char)line_break)
-// 			return ((char *)&temp[i]);
+// 		new[i] = (char)str[i];
 // 		i++;
 // 	}
-// 	return (0);
+// 	new[i] = '\0';
+// 	return (new);
 // }
 
-char	*ft_gnlstrjoin(char *temp, char *buffer)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*new;
 	size_t	i;
 	size_t	j;
-	char	*strjoin;
-
-	i = -1;
-	j = 0;
-	if (!temp)
-	{
-		temp = (char *)malloc(1 * sizeof(char));
-		temp[0] = '\0';
-	}
-	if (!temp || !buffer)
-		return (NULL);
-	strjoin = malloc((ft_strlen(temp) + ft_strlen(buffer)) + 1);
-	if (!strjoin)
-		return (NULL);
-	while (temp[++i])
-		strjoin[i] = temp[i];
-	while (buffer[j])
-		strjoin[i++] = buffer[j++];
-	strjoin[i] = '\0';
-	free(temp);
-	return (strjoin);
-}
-
-char	*ft_get_line(char *temp)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (temp[i] == 0)
-		return (NULL);
-	while (temp[i] && temp[i] != '\n')
-		i++;
-	if (temp[i] == '\0')
-		str = malloc(sizeof(char) * (i + 1));
-	else
-		str = malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (temp[i] && temp[i] != '\n')
-	{
-		str[i] = temp[i];
-		i++;
-	}
-	if (temp[i] == '\n')
-		str[i++] = '\n';
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_new_temp(char *temp)
-{
-	int		i;
-	int		j;
-	char	*str;
 
 	i = 0;
 	j = 0;
-	while (temp[i] != '\n' && temp[i])
-		i++;
-	if (!temp[i])
+	new = (char *) malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
+	if (!new)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		free(temp);
-		return (NULL);
+		new[i] = s1[i];
+		i++;
 	}
-	str = malloc(sizeof(char) * (ft_strlen(temp) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
-	while (temp[i])
-		str[j++] = temp[i++];
-	str[j] = '\0';
-	free(temp);
-	return (str);
+	while (s2[j] != '\0')
+	{
+		new[i] = s2[j];
+		j++;
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
 }
+
+// char	*ft_strchr(const char *str, int c)
+// {
+// 	while (*str)
+// 	{
+// 		if (*(unsigned char *)str == (unsigned char)c)
+// 			return ((char *)str);
+// 		str++;
+// 	}
+// 	if (*(unsigned char *)str == (unsigned char)c)
+// 		return ((char *)str);
+// 	return (NULL);
+// }
